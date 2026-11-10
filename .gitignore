@@ -1,0 +1,25 @@
+
+# Python
+__pycache__/
+*.py[cod]
+entorno/
+venv/
+.venv/
+
+# Credenciales
+backEnd/.env
+
+# Base de datos local Django
+backEnd/db.sqlite3
+
+# React
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Visual Studio Code
+.vscode/
