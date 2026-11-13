@@ -134,8 +134,8 @@ DATABASES = {
         'NAME': f'{DB_HOST}:{DB_PORT}/{DB_SERVICE}',
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': '',
-        'PORT': '',
+        'HOST': 'db.freesql.com',
+        'PORT': '1521',
     },
 }
 
