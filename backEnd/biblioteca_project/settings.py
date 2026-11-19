@@ -130,12 +130,13 @@ DATABASES = {
 
     # Base de datos Oracle FreeSQL
     'negocio': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': f'{DB_HOST}:{DB_PORT}/{DB_SERVICE}',
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': 'db.freesql.com',
-        'PORT': '1521',
+    'ENGINE': 'django.db.backends.oracle',
+    'NAME': f'{DB_HOST}:{DB_PORT}/{DB_SERVICE}',
+    'USER': DB_USER,
+    'PASSWORD': DB_PASSWORD,
+    'HOST': '',
+    'PORT': '',
+
     },
 }
 
