@@ -1,0 +1,6 @@
+
+from biblioteca.infrastructure.models.socio_model import SocioModel
+from biblioteca.infrastructure.models.genero_model import GeneroModel
+from biblioteca.infrastructure.models.libro_model import LibroModel
+from biblioteca.infrastructure.models.prestamo_model import PrestamoModel
+from biblioteca.infrastructure.models.detalle_prestamo_model import DetallePrestamoModel

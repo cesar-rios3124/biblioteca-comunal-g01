@@ -1,3 +1,4 @@
+
 """
 Puerto del repositorio de préstamos.
 Define las operaciones que debe implementar la infraestructura.
@@ -29,6 +30,10 @@ class PrestamoRepository(ABC):
 
     @abstractmethod
     def actualizar(self, prestamo: Prestamo) -> Prestamo:
+        pass
+
+    @abstractmethod
+    def marcar_atrasados(self) -> int:
         pass
 
     @abstractmethod

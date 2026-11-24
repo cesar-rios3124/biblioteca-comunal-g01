@@ -1,3 +1,4 @@
+
 """
 Caso de uso para listar los préstamos de la biblioteca.
 """
@@ -12,4 +13,8 @@ class ListarPrestamos:
         self.repositorio = repositorio
 
     def ejecutar(self) -> list[Prestamo]:
+        # Actualizar el estado de los préstamos vencidos.
+        self.repositorio.marcar_atrasados()
+
+        # Listar los préstamos con sus estados actualizados.
         return self.repositorio.listar()

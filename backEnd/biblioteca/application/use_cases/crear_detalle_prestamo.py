@@ -7,10 +7,12 @@ from biblioteca.application.exceptions import (
     PrestamoNoEncontradoError,
     EjemplaresInsuficientesError,
     EstadoPrestamoInvalidoError,
+    LimiteLibrosExcedidoError,
 )
 
 
 class CrearDetallePrestamo:
+
     def __init__(
         self,
         detalle_repository,
@@ -23,6 +25,7 @@ class CrearDetallePrestamo:
 
     @transaction.atomic(using="negocio")
     def ejecutar(self, id_prestamo: int, id_libro: int, cantidad: int):
+
         if cantidad <= 0:
             raise ValueError("La cantidad debe ser mayor que cero.")
 
@@ -34,6 +37,19 @@ class CrearDetallePrestamo:
         if prestamo.estado != "activo":
             raise EstadoPrestamoInvalidoError(
                 "Solo se pueden agregar libros a préstamos activos."
+            )
+
+        detalles_actuales = self.detalle_repository.listar_por_prestamo(
+            id_prestamo
+        )
+
+        total_actual = sum(
+            detalle.cantidad for detalle in detalles_actuales
+        )
+
+        if total_actual + cantidad > 3:
+            raise LimiteLibrosExcedidoError(
+                "Un préstamo no puede superar los 3 libros."
             )
 
         libro = self.libro_repository.obtener_por_id(id_libro)

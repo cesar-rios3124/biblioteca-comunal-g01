@@ -135,6 +135,20 @@ class PrestamoRepositoryOracle(PrestamoRepository):
 
         return prestamo
 
+    def marcar_atrasados(self) -> int:
+        with connections["negocio"].cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE PRESTAMOS
+                SET ESTADO = 'atrasado'
+                WHERE ESTADO = 'activo'
+                  AND FECHA_DEVOLUCION_ESPERADA <
+                      CAST(SYS_EXTRACT_UTC(SYSTIMESTAMP) AS TIMESTAMP)
+                """
+            )
+
+            return cursor.rowcount
+
     def eliminar(self, id_prestamo: int) -> bool:
         with connections["negocio"].cursor() as cursor:
             cursor.execute(
